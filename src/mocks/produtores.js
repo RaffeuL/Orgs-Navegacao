@@ -21,7 +21,7 @@ const gerarNumeroAleatorio = (min, max) => {
 const produtores = {
   lista: [
     {
-      nome: "Green",
+      nome: "Teste",
       imagem: green,
       distancia: gerarNumeroAleatorio(1, 500),
       estrelas: gerarNumeroAleatorio(1, 5),
