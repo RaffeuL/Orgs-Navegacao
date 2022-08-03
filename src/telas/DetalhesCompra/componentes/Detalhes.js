@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { Image, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
@@ -10,28 +10,23 @@ export default function Detalhes() {
   const navigation = useNavigation();
   const route = useRoute();
 
-  const [ exibeMensagem, setExibeMensagem ] = useState(false);
-  const { mensagemCompra } = useTextos();
+  const { mensagemCompra, tituloCompra, botaoHome, botaoProdutor } = useTextos();
   
-  const nomeCompra = route.params?.compra.nome;
-  const timeStampCompra = route.params?.compra.timeStamp;
-  const mensagemCompleta = mensagemCompra?.replace('$NOME', nomeCompra);
+  const compra = route.params?.compra.nome;
+  const mensagem = mensagemCompra?.replace('$NOME', compra);
 
-  useEffect(() => {
-    setExibeMensagem(!!nomeCompra);
-  },[timeStampCompra])
 
 
   return <>
       <Image source={sucessoImagem} style={estilos.imagem}/>
       <View style={estilos.detalhes}>
-          <Text style={estilos.tituloResumo}>Parabens!</Text>
-          { exibeMensagem && <Text style={estilos.mensagem}>{ mensagemCompleta }</Text> }
+          <Text style={estilos.tituloResumo}>{tituloCompra}</Text>
+          <Text style={estilos.mensagem}>{ mensagem }</Text>
           <TouchableOpacity style={estilos.botaoHome} onPress={() => navigation.popToTop()}>
-              <Text style={estilos.tituloBotao}>Voltar ao Home</Text>
+              <Text style={estilos.tituloBotao}>{botaoHome}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={estilos.botaoProdutor}  onPress={() => navigation.pop(2)}>
-              <Text style={estilos.tituloBotao}>Voltar ao Produtor</Text>
+              <Text style={estilos.tituloBotao}>{botaoProdutor}</Text>
           </TouchableOpacity>
       </View>
   </>

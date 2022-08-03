@@ -3,12 +3,14 @@ import { View ,TouchableOpacity, StyleSheet, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import VoltarSVG from "../../../assets/voltar.svg";
+import useTextos from "../../../hooks/useTextos";
 
 export default function Topo() {
     const navigation = useNavigation();
+    const { tituloResumo } = useTextos();
 
     return <View style={estilos.topo}>
-        <Text style={estilos.titulo}>Pedido feito com sucesso!</Text>
+        <Text style={estilos.titulo}>{tituloResumo}</Text>
         <TouchableOpacity 
         onPress={() => { navigation.goBack() }}
         style={estilos.botaoVoltar}>
